@@ -1,0 +1,25 @@
+<div>
+  <label for="urgents"
+    >Show urgents
+    <input
+      type="checkbox"
+      [checked]="filterByUrgent()"
+      (change)="onFilterByUrgents()"
+    />
+  </label>
+
+  <br />
+  
+  <select [value]="sortOrder()" (change)="onSortByDate($event)">
+    <option value="old">old to new</option>
+    <option value="new">new to old</option>
+  </select>
+</div>
+
+<ul>
+  <li *ngFor="let request of requests()">
+    <h1>{{ request.title }}</h1>
+    <p>{{ request.isUrgent ? "✅" : "❎" }}</p>
+    <p>{{ request.createdAt | date: "medium" }}</p>
+  </li>
+</ul>
